@@ -8,10 +8,16 @@ import zlib
 
 from pprint import pprint
 
-def crc_file(fileName):
+def crc_file(file_name):
 	prev = 0
-	for eachLine in open(fileName,"rb"):
-		prev = zlib.crc32(eachLine, prev)
+	try:
+		file = open(file_name, "rb")
+	except:
+		print "Unable to process {}".format(file_name)
+#		return 'Unable to Read'
+		return
+	for each_line in file:
+		prev = zlib.crc32(each_line, prev)
 	return "{:08x}".format(prev & 0xFFFFFFFF)
 
 def crc_dir(dir_path):
@@ -32,7 +38,7 @@ def parse_args():
 
 def main(args):
 	for path, crc in crc_dir(args.path).iteritems():
-		print("{}  {}".format(crc, path))
+		print("{:9s} {}".format(crc, path))
 
 if __name__ == '__main__':
 	main(parse_args())
