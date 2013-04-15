@@ -1,4 +1,4 @@
 crcdeep
 =======
 
-Recursive CRC Generation
+Recursive CRC Generation of files (like (md5|sha)deep
