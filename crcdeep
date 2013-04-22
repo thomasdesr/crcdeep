@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+from __future__ import division, print_function
 import argparse
 from collections import OrderedDict
 import os
@@ -13,8 +13,7 @@ def crc_file(file_name):
 	try:
 		file = open(file_name, "rb")
 	except:
-		print "Unable to process {}".format(file_name)
-#		return 'Unable to Read'
+		print("Unable to process {}".format(file_name), file=sys.stderr)
 		return
 	for each_line in file:
 		prev = zlib.crc32(each_line, prev)
